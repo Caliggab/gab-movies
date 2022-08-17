@@ -1,0 +1,72 @@
+.backdrop {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-color: #434343;
+  
+}
+
+.modal {
+  width: 90vw;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.text {
+  font-size: 1em;
+  height: 2em;
+  margin: 0;
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  color: black;
+  border: 2px solid #4caf50;
+  padding: 0.5em;
+  margin-top: 1.5em;
+  text-decoration: none;
+  font-size: 1.3em;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.button:hover {
+  background-color: #4caf50;
+  color: white;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+    padding: 1em 3em;
+}
+
+@media only screen and (min-width: 700px) {
+  .modal {
+    width: 70vw;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .modal {
+    width: 600px;
+  }
+}
