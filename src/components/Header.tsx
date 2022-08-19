@@ -9,8 +9,6 @@ const Header: React.FC<Props> = ({ logOut }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(location.pathname);
-
   const handleLogout: React.MouseEventHandler<HTMLButtonElement> = () => {
     logOut();
     localStorage.removeItem("token");
@@ -20,19 +18,14 @@ const Header: React.FC<Props> = ({ logOut }) => {
   return (
     <div className={classes.container}>
       <ul className={classes.links}>
-        {location.pathname === "/favorites" ? (
-          <Link className={classes.link} to="/">
-            Home
-          </Link>
-        ) : (
-          ""
-        )}
         {location.pathname === "/" ? (
           <Link to="/favorites" className={classes.link}>
             Favorites
           </Link>
         ) : (
-          ""
+          <Link className={classes.link} to="/">
+            Home
+          </Link>
         )}
       </ul>
       <div>Logo</div>

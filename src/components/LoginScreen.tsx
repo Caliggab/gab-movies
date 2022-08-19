@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "../UI/Card";
 import classes from "./LoginScreen.module.css";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,12 @@ const LoginScreen: React.FC<Props> = ({ auth, setAuth }) => {
   });
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (auth === true) {
+      navigate("/");
+    }
+  }, [auth, navigate]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInput({
       ...input,
@@ -24,7 +30,6 @@ const LoginScreen: React.FC<Props> = ({ auth, setAuth }) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     try {
       const response = await fetch("https://reqres.in/api/login", {
         method: "POST",
