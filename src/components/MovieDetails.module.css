@@ -1,0 +1,148 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  margin-top: -230px;
+  z-index: 100;
+  padding: 0;
+  background-size: cover;
+}
+
+.textContainer {
+  width: 42vw;
+  margin: auto;
+  margin-left: 185px;
+  padding: 10px;
+  position: relative;
+}
+
+.title {
+  font-size: 5em;
+  padding-top: 2em;
+  color: rgb(240, 179, 152);
+}
+
+.genres {
+  font-size: 1.5em;
+}
+
+.subText {
+  font-size: 1.5em;
+  margin-bottom: 6em;
+}
+
+.scroller {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5em;
+  cursor: pointer;
+  position: relative;
+  color: rgb(239, 108, 50);
+  border: 2px solid rgb(239, 108, 50);
+  border-radius: 10px;
+  padding: 1em 1.7em;
+}
+
+.scroller:hover {
+  color: rgb(255, 255, 255);
+  border: 2px solid rgb(255, 255, 255);
+  transition-duration: 0.4s;
+}
+
+.subtitle {
+  text-align: center;
+  margin: 3.5em 0;
+}
+
+.carrouselItem {
+  height: 300px;
+}
+.carrousel {
+  width: 70vw;
+  height: 700px;
+}
+.carrouselContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 3em auto;
+  text-align: center;
+}
+
+.carrouselTitle {
+  font-size: 3em;
+}
+
+.actorPic {
+  max-height: 300px;
+  max-width: 200px;
+}
+
+.individual {
+  height: 300px;
+  width: 200px;
+}
+
+.recommendationTitle {
+  text-decoration: none;
+  color: white;
+}
+
+.cardContainer {
+  max-width: 20%;
+  min-height: 300px;
+  flex: 50%;
+  text-decoration: none;
+  color: white;
+  background-size: cover;
+  border-radius: 15px;
+  padding: 1em 2em;
+  transition: all 0.2s ease-in-out;
+}
+
+.cardContainer:hover {
+  box-shadow: 0 0 20px rgb(239, 108, 50);
+  transition-duration: 0.4s;
+  border-radius: 14px;
+  transform: scale(1.07);
+}
+
+.innerContainer {
+  background-size: cover;
+  padding: 1em 2em;
+  height: 100%;
+}
+
+.recContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.recTitle {
+  font-size: 2.5em;
+  color: rgb(253, 210, 191);
+}
+
+.rating {
+  font-size: 2em;
+}
+
+.ratingNum {
+  color: rgb(239, 108, 50);
+}
+
+.addContainer {
+  display: flex;
+  align-items: center;
+}
+
+.heart {
+  font-size: 2em;
+  padding-left: 1em;
+  color: rgb(239, 108, 50);
+}

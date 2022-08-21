@@ -50,22 +50,27 @@ const Favorites: React.FC<Props> = ({
       <Header logOut={logOut} currentFavoriteList={currentFavoriteList} />
       <div className={classes.hero}>
         <div className={classes.textContainer}>
-          <h1 className={classes.title}>All your Movies in one place...</h1>
+          <h1 className={classes.title}>Your secret Vault</h1>
           <p className={classes.subText}>
-            Tune in to GabMovies anytime. All your movies. With action, comedy,
-            movies, news, and more 24/7, there’s a film for everyone, all the
-            time.
+            Here you can find all your favorite movies. See them and share them
+            with your friends. It only makes sense to be alive if you are
+            surrounded by great films. Relive your adventures now.
           </p>
           <span onClick={executeScroll} className={classes.scroller}>
             {" "}
-            START YOUR JOURNEY{" "}
+            EXPLORE YOUR MEMORIES{" "}
           </span>
         </div>
       </div>
-      <h1>Your Favorites!!!</h1>
-      <p>Favorite Total: {currentFavoriteList.length}</p>
+      <h1 className={classes.subtitle}>Your Favorites</h1>
+
       {noFavorites ? (
-        "No favorites added yet!"
+        ""
+      ) : (
+        <p className={classes.total}>Total: {currentFavoriteList.length}</p>
+      )}
+      {noFavorites ? (
+        <h2 className={classes.subtitle}>No favorites added yet! 😢</h2>
       ) : (
         <FavoriteList
           movies={[...movies].reverse()}

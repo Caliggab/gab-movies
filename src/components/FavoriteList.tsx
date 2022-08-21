@@ -32,11 +32,8 @@ const FavoriteList: React.FC<Props> = ({
   ));
 
   return (
-    <div>
-      <h1>Favorites List!</h1>
-
-      {location.pathname === "/favorites" ? <div>{list}</div> : ""}
-      <div>{currentFavoriteList.length}</div>
+    <div className={classes.mainContainer}>
+      <div className={classes.container}>{list}</div>
     </div>
   );
 };

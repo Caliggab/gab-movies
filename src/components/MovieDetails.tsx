@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "./Header";
+import classes from "./MovieDetails.module.css";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { FaHeart } from "react-icons/fa";
+import Footer from "./Footer";
 
 interface Props {
   isLoggedIn: boolean;
@@ -130,8 +135,6 @@ const MovieDetails: React.FC<Props> = ({
 
       const recommendationsData = await recommendationsResponse.json();
 
-      console.log(recommendationsData.results);
-
       setCast(castData.cast);
       setGenres(data.genres);
       setRecommendations(recommendationsData.results);
@@ -146,38 +149,92 @@ const MovieDetails: React.FC<Props> = ({
     getSpecificMovie();
   }, []);
 
-  console.log();
-
   let movieInfo = (
     <div>
-      <h1>{specificMovie!.title}</h1>
-      <p>{specificMovie!.id}</p>
-      <p>{specificMovie!.poster_path}</p>
-      <p>{specificMovie!.release_date}</p>
-      <p>{specificMovie!.overview}</p>
-      <p>{specificMovie!.vote_average}</p>
-      <p>{specificMovie!.success}</p>
-      <p>
-        Genres:
-        {genres.map((genre: any) => (
-          <span>-- {genre.name} -- </span>
-        ))}
-      </p>
-      <p>{isFavorite ? "IS IN YOUR FAVORITES" : "Not favorite"}</p>
-      {cast.map((person: any) => (
-        <>
-          <div>
-            {person.name} as: {person.character} Img: {person.profile_path}
+      <div
+        className={classes.hero}
+        style={{
+          background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url("https://image.tmdb.org/t/p/original/${
+            specificMovie!.backdrop_path
+          }")`,
+          backgroundSize: "cover",
+        }}
+      >
+        <div className={classes.textContainer}>
+          <h1 className={classes.title}>{specificMovie!.title}</h1>
+          <p className={classes.subText}>{specificMovie!.overview}</p>
+          <div className={classes.addContainer}>
+            <span onClick={toggleFavoritesHandler} className={classes.scroller}>
+              {isFavorite ? "Remove from favorites" : "Add to favorites!"}
+            </span>
+            <div>
+              {isFavorite ? (
+                <span className={classes.heart}>
+                  <FaHeart />
+                </span>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
-        </>
-      ))}
-      <div>
-        <h2>Recommendations:</h2>
-        {recommendations.map((movie: any) => (
-          <div>
-            <div>{movie.title}</div>
-            <a href={`/movies/${movie.id}`}>See more info!</a>
-          </div>
+          <p className={classes.rating}>
+            Rating:{" "}
+            <span className={classes.ratingNum}>
+              {Math.round(specificMovie!.vote_average * 10) / 10}
+            </span>
+          </p>
+          <p>Release Date: {specificMovie!.release_date}</p>
+
+          <p className={classes.genres}>
+            {genres.map((genre: any) => (
+              <span>{genre.name.toUpperCase()} </span>
+            ))}
+          </p>
+        </div>
+      </div>
+
+      <div className={classes.carrouselContainer}>
+        <h2 className={classes.carrouselTitle}>Cast</h2>
+        <Carousel
+          className={classes.carrousel}
+          showIndicators={false}
+          emulateTouch={true}
+          swipeable={true}
+          showArrows={false}
+          autoPlay={true}
+          infiniteLoop={true}
+        >
+          {cast.slice(0, 20).map((person: any) => (
+            <div className={classes.carrouselItem}>
+              <p className={classes.label}>
+                {person.name} as: {person.character}
+              </p>
+              <img
+                src={`https://image.tmdb.org/t/p/original/${person.profile_path}`}
+                alt=""
+                className={classes.actorPic}
+              />
+            </div>
+          ))}
+        </Carousel>
+      </div>
+
+      <h2>Recommendations</h2>
+      <div className={classes.recContainer}>
+        {recommendations.slice(0, 12).map((movie: any) => (
+          <Link
+            to={`/movies/${movie.id}`}
+            className={classes.cardContainer}
+            style={{
+              background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url("https://image.tmdb.org/t/p/original/${movie.backdrop_path}")`,
+              backgroundSize: "cover",
+            }}
+            key={Math.random()}
+          >
+            <div className={classes.innerContainer}>
+              <h1 className={classes.recTitle}>{movie.title}</h1>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
@@ -191,9 +248,7 @@ const MovieDetails: React.FC<Props> = ({
         <div>
           <Header logOut={logOut} currentFavoriteList={currentFavoriteList} />
           {notFound ? <div>Movie Not Found</div> : movieInfo}
-          <button onClick={toggleFavoritesHandler}>
-            {isFavorite ? "Remove from favorites" : "Add to favorites!"}
-          </button>
+          <Footer />
         </div>
       )}
     </div>
