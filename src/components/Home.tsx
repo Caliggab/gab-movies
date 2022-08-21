@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import Footer from "./Footer";
 import Header from "./Header";
 import MoviesList from "./MoviesList";
 import SearchMovies from "./SearchMovies";
@@ -7,14 +8,7 @@ import SearchMovies from "./SearchMovies";
 interface Props {
   isLoggedIn: boolean;
   logOut: (params: any) => void;
-  movies: {
-    id: number;
-    title: string;
-    poster: string;
-    release_date: string;
-    overview: string;
-    rating: number;
-  }[];
+  movies: {}[];
   searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -38,8 +32,8 @@ const Home: React.FC<Props> = ({
       <MoviesList
         movies={movies}
         searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-      />
+        setSearchTerm={setSearchTerm}       />
+      <Footer />
     </div>
   );
 };

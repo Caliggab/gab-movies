@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import Footer from "./Footer";
 import Header from "./Header";
 import MoviesList from "./MoviesList";
 import SearchMovies from "./SearchMovies";
@@ -7,14 +8,7 @@ import SearchMovies from "./SearchMovies";
 interface Props {
   isLoggedIn: boolean;
   logOut: (params: any) => void;
-  movies: {
-    id: number;
-    title: string;
-    poster: string;
-    release_date: string;
-    overview: string;
-    rating: number;
-  }[];
+  movies: any;
   searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -26,30 +20,39 @@ const Favorites: React.FC<Props> = ({
   searchTerm,
   setSearchTerm,
 }) => {
-  
-  if (!isLoggedIn) {
-    return <Navigate to="/login" replace />;
-  }
-  let currentFavoriteList = JSON.parse(
+  const [noFavorites, setNoFavorites] = useState(false);
+
+  let favoritesInStorage = JSON.parse(
     localStorage.getItem("FavoriteMoviesList")!
   );
 
-  console.log(currentFavoriteList);
+  useEffect(() => {
+    if (favoritesInStorage.length === 0) {
+      setNoFavorites(true);
+    }
+  }, []);
 
-  let parsedList = movies.filter((movie: any) =>
-    currentFavoriteList.includes(movie.id)
-  );
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+
 
   return (
     <div>
       <Header logOut={logOut} />
       <h1>Your Favorites!!!</h1>
       <SearchMovies searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <MoviesList
-        movies={parsedList}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-      />
+      {noFavorites ? (
+        "No favorites added yet!"
+      ) : (
+        <MoviesList
+          movies={movies}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+        />
+      )}
+      <Footer />
     </div>
   );
 };
