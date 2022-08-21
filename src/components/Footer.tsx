@@ -1,4 +1,5 @@
 import classes from "./Footer.module.css";
+import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -8,8 +9,10 @@ const Footer = () => {
         alt="IMDB logo"
         className={classes.logo}
       />
-      <p>Created by Gabriel Arriaza</p>
-      <p>Github</p>
+      <p>Created by Gabriel Arriaza 2022&copy;</p>
+      <a href="" className={classes.gitLogo}>
+        <FaGithub />
+      </a>
     </div>
   );
 };

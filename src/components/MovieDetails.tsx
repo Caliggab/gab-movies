@@ -5,28 +5,23 @@ import Header from "./Header";
 interface Props {
   isLoggedIn: boolean;
   logOut: (params: any) => void;
+  setCurrentFavoriteList: React.Dispatch<React.SetStateAction<any>>;
+  currentFavoriteList: any;
 }
 
-interface specificMovie {
-  backdrop_path: string;
-  id: number;
-  title: string;
-  tagline: string;
-  overview: string;
-  poster_path: string;
-  release_date: string;
-  vote_average: number;
-  genres: {}[];
-  success: boolean;
-}
-
-const MovieDetails: React.FC<Props> = ({ isLoggedIn, logOut }) => {
+const MovieDetails: React.FC<Props> = ({
+  isLoggedIn,
+  logOut,
+  setCurrentFavoriteList,
+  currentFavoriteList,
+}) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [specificMovie, setSpecificMovie]: any = useState({});
   const [notFound, setNotFound] = useState(false);
   const [genres, setGenres] = useState([]);
   const [cast, setCast] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   let { id }: any = useParams();
 
   let favMovieStructure: any = {
@@ -53,35 +48,28 @@ const MovieDetails: React.FC<Props> = ({ isLoggedIn, logOut }) => {
     let currentFavoriteList: any = localStorage.getItem("FavoriteMoviesList");
 
     function SaveDataToLocalStorage(data: any) {
-      var a = [];
+      let a = [];
       a = JSON.parse(localStorage.getItem("FavoriteMoviesList")!) || [];
       a.push(data);
       localStorage.setItem("FavoriteMoviesList", JSON.stringify(a));
     }
 
     if (!currentFavoriteList) {
-      var a = [];
+      var a: any = [];
       a.push(JSON.parse(favMovieStructure));
       localStorage.setItem("FavoriteMoviesList", JSON.stringify(a));
+      setCurrentFavoriteList(JSON.parse(a));
       setIsFavorite(true);
     } else {
       a = JSON.parse(localStorage.getItem("FavoriteMoviesList")!);
 
-      console.log("a", a);
       if (
         localStorage
           .getItem("FavoriteMoviesList")!
           .includes(JSON.stringify(favMovieStructure))
       ) {
-        console.log("hiiii! already in localstorage");
-
         let Ls = localStorage.getItem("FavoriteMoviesList")!;
-
-        console.log("Ls", Ls);
-
         let newLs = Ls.replace(JSON.stringify(favMovieStructure), "");
-
-        console.log(a.length);
 
         if (a.length < 1) {
           newLs = newLs.replace(" ,", "");
@@ -99,10 +87,18 @@ const MovieDetails: React.FC<Props> = ({ isLoggedIn, logOut }) => {
         newLs = newLs.replaceAll(/(,\s{2,},)/g, ", ");
         newLs = newLs.replaceAll(/(,\s{1,},\s{1,})/g, ", ");
 
+        setCurrentFavoriteList(JSON.parse(newLs));
         localStorage.setItem("FavoriteMoviesList", newLs);
         setIsFavorite(false);
+
         return;
       }
+
+      let b = [];
+      b = JSON.parse(localStorage.getItem("FavoriteMoviesList")!) || [];
+      b.push(favMovieStructure);
+      setCurrentFavoriteList(b);
+
       setIsFavorite(true);
       SaveDataToLocalStorage(favMovieStructure);
     }
@@ -110,6 +106,7 @@ const MovieDetails: React.FC<Props> = ({ isLoggedIn, logOut }) => {
 
   const getSpecificMovie = async () => {
     try {
+      setIsLoading(true);
       const response = await fetch(
         `https://api.themoviedb.org/3/movie/${id}?api_key=851778a47c1b0f0d7ab8bfb8cbb4e119&language=en-US`
       );
@@ -139,6 +136,7 @@ const MovieDetails: React.FC<Props> = ({ isLoggedIn, logOut }) => {
       setGenres(data.genres);
       setRecommendations(recommendationsData.results);
       setSpecificMovie(data);
+      setIsLoading(false);
     } catch (error) {
       console.log(error.message);
     }
@@ -187,11 +185,17 @@ const MovieDetails: React.FC<Props> = ({ isLoggedIn, logOut }) => {
 
   return (
     <div>
-      <Header logOut={logOut} />
-      {notFound ? <div>Movie Not Found</div> : movieInfo}
-      <button onClick={toggleFavoritesHandler}>
-        {isFavorite ? "Remove from favorites" : "Add to favorites!"}
-      </button>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <div>
+          <Header logOut={logOut} currentFavoriteList={currentFavoriteList} />
+          {notFound ? <div>Movie Not Found</div> : movieInfo}
+          <button onClick={toggleFavoritesHandler}>
+            {isFavorite ? "Remove from favorites" : "Add to favorites!"}
+          </button>
+        </div>
+      )}
     </div>
   );
 };

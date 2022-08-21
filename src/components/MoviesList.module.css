@@ -1,7 +1,10 @@
+.mainContainer {
+  margin: 3em 7em;
+}
+
 .container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1em;
-  margin: 1em 2em;
 }

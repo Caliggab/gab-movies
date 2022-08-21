@@ -1,42 +1,97 @@
 .links {
-    display: flex;
-    margin-left: 3em;
-    padding: 1em
+  display: flex;
+  margin-left: 3em;
+  padding: 1em;
 }
 
 .link {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  cursor: pointer;
+  position: relative;
+}
+
+.link:hover {
+  color: rgb(239, 108, 50);
+  transition-duration: 0.4s;
+}
+
+.mainContainer {
+  padding: 1em;
+  z-index: 100000;
+  background: none;
 }
 
 .container {
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    justify-content: space-between;
-    width: 100vw;
-    height: 130px;
-    background-color: rgb(52, 52, 52);
-    padding: 0em;
+  display: flex;
+  align-items: center;
+  right: auto;
+  left: auto;
+  justify-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 150px;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0em;
+  margin-top: 1em;
+  border-radius: 10px;
+  border: 2px solid rgb(239, 108, 50);
+}
+
+.logoSearch {
+  display: flex;
+  align-items: center;
+  padding-left: 2em;
+  width: 50vw;
+  gap: 1.5em;
+}
+
+.logo {
+  height: 120px;
+  border-radius: 20px;
+  border: 2px solid #ef6c32;
+}
+
+.logo:hover {
+  border: 2px solid #ffffff;
+  transition-duration: 0.4s;
+}
+
+.linkAndButton {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  padding-right: 6em;
+}
+
+.number {
+  position: absolute;
+  top: -15px;
+  right: -13px;
+  opacity: 0.6;
 }
 
 .button {
-    background-color: white; 
-    color: black; 
-    border: 2px solid #f44336;
-    padding: 5px 25px;
-    margin-top: 0.5em;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1em;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 10px;
-    margin-right: 3em;
-  }
-  
-  .button:hover {
-    background-color: #f44336;
-    color: white;
-  }
+  height: 50%;
+  background-color: #ef6c32;
+  color: white;
+  padding: 5px 25px;
+  margin-top: 0.5em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-right: 3em;
+  font-weight: bold;
+  font-size: 1.2em;
+  border: none;
+}
+
+.button:hover {
+  background-color: #d20e00;
+  color: white;
+}

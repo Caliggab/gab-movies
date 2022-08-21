@@ -1,7 +1,23 @@
 .container {
   display: flex;
+  height: 500px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  background-color: rgb(15, 15, 15);
+  margin-top: 10em;
 }
 
 .logo {
-    width: 200px;
+  width: 200px;
+}
+
+.gitLogo {
+  font-size: 2em;
+}
+
+.gitLogo:hover {
+  color: white;
+  transition-duration: 0.4s;
 }

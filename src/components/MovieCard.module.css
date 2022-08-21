@@ -1,3 +1,42 @@
 .cardContainer {
-    width: 46vw;
+  max-width: 45%;
+  min-height: 600px;
+  flex: 50%;
+  text-decoration: none;
+  color: white;
+  background-size: cover;
+  border-radius: 15px;
+  padding: 1em 2em;
+  transition: all 0.2s ease-in-out;
+}
+
+.cardContainer:hover {
+  box-shadow: 0 0 20px rgb(239, 108, 50);
+  transition-duration: 0.4s;
+  border-radius: 14px;
+  transform: scale(1.07);
+}
+
+.innerContainer {
+  background-size: cover;
+  padding: 1em 2em;
+  height: 100%;
+}
+
+.rating {
+  margin-bottom: 1em;
+}
+
+.overview {
+  margin-bottom: 1em;
+  padding-bottom: 300px;
+}
+
+.heart {
+    position: absolute;
+}
+
+.title {
+    font-size: 2.5em;
+    color: rgb(253, 210, 191)
 }

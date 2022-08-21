@@ -1,26 +1,35 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import FavoriteList from "./FavoriteList";
 import Footer from "./Footer";
 import Header from "./Header";
-import MoviesList from "./MoviesList";
-import SearchMovies from "./SearchMovies";
+import classes from "./Favorites.module.css";
 
 interface Props {
   isLoggedIn: boolean;
   logOut: (params: any) => void;
   movies: any;
-  searchTerm: string;
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  setCurrentFavoriteList: React.Dispatch<React.SetStateAction<any>>;
+  currentFavoriteList: any;
 }
 
 const Favorites: React.FC<Props> = ({
   isLoggedIn,
   logOut,
   movies,
-  searchTerm,
-  setSearchTerm,
+  setCurrentFavoriteList,
+  currentFavoriteList,
 }) => {
   const [noFavorites, setNoFavorites] = useState(false);
+  const navigate = useNavigate();
+
+  const executeScroll = () => {
+    window.scrollBy({
+      top: 1050,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
 
   let favoritesInStorage = JSON.parse(
     localStorage.getItem("FavoriteMoviesList")!
@@ -32,24 +41,37 @@ const Favorites: React.FC<Props> = ({
     }
   }, []);
 
-
-  if (!isLoggedIn) {
-    return <Navigate to="/login" replace />;
+  if (isLoggedIn !== true) {
+    navigate("/login");
   }
-
 
   return (
     <div>
-      <Header logOut={logOut} />
+      <Header logOut={logOut} currentFavoriteList={currentFavoriteList} />
+      <div className={classes.hero}>
+        <div className={classes.textContainer}>
+          <h1 className={classes.title}>All your Movies in one place...</h1>
+          <p className={classes.subText}>
+            Tune in to GabMovies anytime. All your movies. With action, comedy,
+            movies, news, and more 24/7, there’s a film for everyone, all the
+            time.
+          </p>
+          <span onClick={executeScroll} className={classes.scroller}>
+            {" "}
+            START YOUR JOURNEY{" "}
+          </span>
+        </div>
+      </div>
       <h1>Your Favorites!!!</h1>
-      <SearchMovies searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <p>Favorite Total: {currentFavoriteList.length}</p>
       {noFavorites ? (
         "No favorites added yet!"
       ) : (
-        <MoviesList
-          movies={movies}
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
+        <FavoriteList
+          movies={[...movies].reverse()}
+          setCurrentFavoriteList={setCurrentFavoriteList}
+          currentFavoriteList={currentFavoriteList}
+          key={Math.random()}
         />
       )}
       <Footer />
