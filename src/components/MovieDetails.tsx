@@ -223,7 +223,7 @@ const MovieDetails: React.FC<Props> = ({
           {cast.slice(0, 20).map((person: any) => (
             <div className={classes.carrouselItem} key={Math.random()}>
               <p className={classes.label}>
-                {person.name} as {person.character}
+                {person.name} {person.character? `as ${person.character}` : ""}
               </p>
               {person.profile_path === null ? (
                 // <div className={classes.actorPic}></div>
