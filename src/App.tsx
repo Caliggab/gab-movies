@@ -21,7 +21,7 @@ interface popularMovie {
 
 function App() {
   const [movies, setMovies] = useState([{}]);
-  const [auth, setAuth] = useState<boolean>(false);
+  const [auth, setAuth] = useState(false);
   const [currentFavoriteList, setCurrentFavoriteList]: any[] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate();
@@ -147,6 +147,7 @@ function App() {
           <PageNotFound
             logOut={setAuth}
             currentFavoriteList={currentFavoriteList}
+            isLoggedIn={auth}
           />
         }
       />
