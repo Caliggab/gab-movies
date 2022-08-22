@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Navigate } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";

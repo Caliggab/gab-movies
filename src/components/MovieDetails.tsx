@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { useParams } from "react-router-dom";
 import Header from "./Header";
 import classes from "./MovieDetails.module.css";
 import { Carousel } from "react-responsive-carousel";
@@ -30,15 +30,26 @@ const MovieDetails: React.FC<Props> = ({
   const [isLoading, setIsLoading] = useState(false);
   let { id }: any = useParams();
 
-  let favMovieStructure: any = {
-    backdrop_path: specificMovie.backdrop_path,
-    id: specificMovie.id,
-    title: specificMovie.title,
-    overview: specificMovie.overview,
-    poster_path: specificMovie.poster_path,
-    release_date: specificMovie.release_date,
-    vote_average: Math.round(specificMovie.vote_average * 10) / 10,
-  };
+  let favMovieStructure: any = useMemo(
+    () => ({
+      backdrop_path: specificMovie.backdrop_path,
+      id: specificMovie.id,
+      title: specificMovie.title,
+      overview: specificMovie.overview,
+      poster_path: specificMovie.poster_path,
+      release_date: specificMovie.release_date,
+      vote_average: Math.round(specificMovie.vote_average * 10) / 10,
+    }),
+    [
+      specificMovie.backdrop_path,
+      specificMovie.id,
+      specificMovie.overview,
+      specificMovie.poster_path,
+      specificMovie.release_date,
+      specificMovie.title,
+      specificMovie.vote_average,
+    ]
+  );
 
   useEffect(() => {
     if (
@@ -150,12 +161,6 @@ const MovieDetails: React.FC<Props> = ({
     getSpecificMovie();
   }, []);
 
-  let bgImg = !specificMovie!.backdrop_path
-    ? "null"
-    : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url("https://image.tmdb.org/t/p/original/${
-        specificMovie!.backdrop_path
-      }")`;
-
   let movieInfo = (
     <div>
       <div
@@ -223,10 +228,9 @@ const MovieDetails: React.FC<Props> = ({
           {cast.slice(0, 20).map((person: any) => (
             <div className={classes.carrouselItem} key={Math.random()}>
               <p className={classes.label}>
-                {person.name} {person.character? `as ${person.character}` : ""}
+                {person.name} {person.character ? `as ${person.character}` : ""}
               </p>
               {person.profile_path === null ? (
-                // <div className={classes.actorPic}></div>
                 <img src={Profile} alt="" className={classes.actorPic} />
               ) : (
                 <img

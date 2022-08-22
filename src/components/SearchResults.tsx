@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 import MoviesList from "./MoviesList";
-import SearchMovies from "./SearchMoviesForm";
 import classes from "./SearchResults.module.css";
 
 interface Props {
@@ -75,7 +74,9 @@ const SearchResults: React.FC<Props> = ({
               <span className={classes.query}>{searchQuery}</span>
             </p>
             {foundMovies.length === 0 ? (
-              <div className={classes.noResults}>No results found! Try a different query</div>
+              <div className={classes.noResults}>
+                No results found! Try a different query
+              </div>
             ) : (
               ""
             )}
