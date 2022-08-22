@@ -1,11 +1,12 @@
 .mainContainer {
-  margin: 3em 7em;
+  margin: 3em 8em;
 }
 
 .container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1em;
 }
 
