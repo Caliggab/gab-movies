@@ -6,7 +6,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { FaHeart } from "react-icons/fa";
 import Footer from "./Footer";
-import Profile from "../assets/img/profile.jpg"
+import Profile from "../assets/img/profile.jpg";
 
 interface Props {
   isLoggedIn: boolean;
@@ -196,7 +196,7 @@ const MovieDetails: React.FC<Props> = ({
 
           <p className={classes.genres}>
             {genres.map((genre: any) => (
-              <span>{genre.name.toUpperCase()} </span>
+              <span key={Math.random()}>{genre.name.toUpperCase()} </span>
             ))}
           </p>
         </div>
@@ -221,17 +221,13 @@ const MovieDetails: React.FC<Props> = ({
           stopOnHover={true}
         >
           {cast.slice(0, 20).map((person: any) => (
-            <div className={classes.carrouselItem}>
+            <div className={classes.carrouselItem} key={Math.random()}>
               <p className={classes.label}>
-                {person.name} as: {person.character}
+                {person.name} as {person.character}
               </p>
               {person.profile_path === null ? (
                 // <div className={classes.actorPic}></div>
-                <img
-                  src={Profile}
-                  alt=""
-                  className={classes.actorPic}
-                />
+                <img src={Profile} alt="" className={classes.actorPic} />
               ) : (
                 <img
                   src={
@@ -243,16 +239,6 @@ const MovieDetails: React.FC<Props> = ({
                   className={classes.actorPic}
                 />
               )}
-
-              {/* <img
-                src={
-                  person.profile_path === null
-                    ? ""
-                    : `https://image.tmdb.org/t/p/original/${person.profile_path}`
-                }
-                alt=""
-                className={classes.actorPic}
-              /> */}
             </div>
           ))}
         </Carousel>

@@ -37,6 +37,7 @@
   padding: 0em;
   margin-top: 1em;
   border-radius: 10px;
+  
 }
 
 .logoSearch {
@@ -46,6 +47,9 @@
   width: 50vw;
   gap: 1.5em;
   z-index: 20000;
+  animation: fadeInAnimation ease 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 .logo {
@@ -64,6 +68,10 @@
   align-items: center;
   gap: 2em;
   padding-right: 6em;
+  z-index: 20000;
+  animation: fadeInAnimation ease 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 .number {
@@ -129,5 +137,14 @@
     font-size: 0.7em;
     margin-top: 0em;
     gap: 5em;
+  }
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

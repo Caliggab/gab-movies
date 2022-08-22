@@ -15,6 +15,8 @@
   z-index: 10000;
   padding: 0;
   background-size: cover;
+  animation: fadeInAnimation ease 1s;
+  animation-iteration-count: 1;
 }
 
 .title {
@@ -27,28 +29,41 @@
 }
 
 .hero {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)),
-      url("../assets/img/searchBackground.jpg");
-    margin-top: -230px;
-    z-index: 100;
-    padding: 0;
-    background-size: cover;
-  }
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)),
+    url("../assets/img/searchBackground.jpg");
+  margin-top: -230px;
+  z-index: 100;
+  padding: 0;
+  background-size: cover;
+  animation: fadeInAnimation ease 1s;
+  animation-iteration-count: 1;
+}
 
-  .container {
-    margin-top: -700px;
-    margin-bottom: 600px;
-  }
+.container {
+  margin-top: -700px;
+  margin-bottom: 600px;
+  animation: fadeInAnimation ease 2s;
+  animation-iteration-count: 1;
+}
 
-  .noResults {
-    text-align: center;
-    font-size: 1.5em;
-  }
+.noResults {
+  text-align: center;
+  font-size: 1.5em;
+}
 
-  .listContainer {
-    margin-top: 200px;
+.listContainer {
+  margin-top: 200px;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
   }
+  100% {
+    opacity: 1;
+  }
+}

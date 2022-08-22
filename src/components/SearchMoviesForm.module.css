@@ -57,9 +57,17 @@
   color: #ef6c32;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 505px) {
   .search_box {
     width: 95%;
+  }
+
+  .search_box input[type="text"] {
+    padding: 10px;
+  }
+
+  .fasearch {
+    font-size: 20px;
   }
 }
 

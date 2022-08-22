@@ -23,5 +23,9 @@
   },
   "include": [
     "src", "src/components", "src/custom.d.ts"
+  ],
+  "typeRoots": [
+    "../node_modules/@types",
+    "../@types"
   ]
 }
