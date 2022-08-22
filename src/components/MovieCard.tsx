@@ -1,5 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
-import Card from "../UI/Card";
+import { useEffect, useState } from "react";
 import classes from "./MovieCard.module.css";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -42,10 +41,9 @@ const MovieCard: React.FC<Props> = ({ movie, setCurrentFavoriteList }) => {
     }
   }, [movie]);
 
-  let bgImg =
-    !movie.backdrop_path
-      ? "null"
-      : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url("https://image.tmdb.org/t/p/original/${movie.backdrop_path}")`;
+  let bgImg = !movie.backdrop_path
+    ? "null"
+    : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url("https://image.tmdb.org/t/p/original/${movie.backdrop_path}")`;
 
   return (
     <Link
