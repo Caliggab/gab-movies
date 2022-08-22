@@ -2,33 +2,34 @@
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  height: 150vh;
   margin-top: -230px;
   z-index: 100;
   padding: 0;
   background-size: cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)),
+    url("../assets/img/bgPlaceholder.jpg");
 }
 
 .textContainer {
-  width: 42vw;
-  margin: auto;
+  width: 50vw;
+  margin-top: 250px;
   margin-left: 185px;
   padding: 10px;
   position: relative;
 }
 
 .title {
-  font-size: 5em;
-  padding-top: 2em;
+  font-size: 4em;
   color: rgb(240, 179, 152);
 }
 
 .genres {
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .subText {
-  font-size: 1.5em;
+  font-size: 1.2em;
   margin-bottom: 6em;
 }
 
@@ -36,7 +37,7 @@
   text-decoration: none;
   color: white;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 20px;
   cursor: pointer;
   position: relative;
   color: rgb(239, 108, 50);
@@ -57,7 +58,7 @@
 }
 
 .carrouselItem {
-  height: 300px;
+  height: 500px;
 }
 .carrousel {
   width: 70vw;
@@ -74,11 +75,23 @@
 
 .carrouselTitle {
   font-size: 3em;
+  text-align: center;
 }
 
 .actorPic {
-  max-height: 300px;
-  max-width: 200px;
+  height: 400px;
+  max-width: 300px;
+  border-radius: 14px;
+  background: url("../assets/img/profile.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  z-index: 10000;
+  align-self: center;
+  text-align: center;
+  justify-self: center;
+  object-fit: cover;
 }
 
 .individual {
@@ -92,7 +105,7 @@
 }
 
 .cardContainer {
-  max-width: 20%;
+  max-width: 19%;
   min-height: 300px;
   flex: 50%;
   text-decoration: none;
@@ -101,6 +114,8 @@
   border-radius: 15px;
   padding: 1em 2em;
   transition: all 0.2s ease-in-out;
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)),
+    url("../assets/img/bgPlaceholder.jpg");
 }
 
 .cardContainer:hover {
@@ -121,11 +136,14 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1em;
+  width: 99vw;
+  margin: 3em 5em;
 }
 
 .recTitle {
-  font-size: 2.5em;
+  font-size: 2rem;
   color: rgb(253, 210, 191);
+  text-align: center;
 }
 
 .rating {
@@ -145,4 +163,108 @@
   font-size: 2em;
   padding-left: 1em;
   color: rgb(239, 108, 50);
+}
+
+.spinner {
+  border: none;
+  pointer-events: none;
+  width: 100vw;
+  position: absolute;
+}
+
+.background {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  margin-top: 0;
+  z-index: 10000;
+  padding: 0;
+  background-size: cover;
+}
+
+.recMainTitle {
+  text-align: center;
+  font-size: 2em;
+}
+
+@media only screen and (max-width: 1300px) {
+  .textContainer {
+    margin-top: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .scroller {
+    font-size: 1em;
+  }
+
+  .title {
+    font-size: 3em;
+  }
+}
+
+@media only screen and (max-width: 930px) {
+  .textContainer {
+    width: 80vw;
+    margin-top: 400px;
+  }
+  .heart {
+    font-size: 1.5em;
+  }
+  .addContainer {
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .scroller {
+    font-size: 1em;
+  }
+
+  .title {
+    font-size: 1.8em;
+  }
+
+  .subText {
+    font-size: 1em;
+  }
+
+  .textContainer {
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: 2em;
+    margin: 1.5em 0;
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .cardContainer {
+    max-width: 43%;
+  }
+
+  .recContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin: 3em 1em;
+  }
+}
+@media only screen and (max-width: 1070px) {
+  .cardContainer {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .overview {
+    font-size: 1em;
+  }
+  .cardContainer {
+    text-align: center;
+  }
 }

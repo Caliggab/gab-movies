@@ -8,6 +8,8 @@
   border-radius: 15px;
   padding: 1em 2em;
   transition: all 0.2s ease-in-out;
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)),
+    url("../assets/img/bgPlaceholder.jpg");
 }
 
 .cardContainer:hover {
@@ -24,20 +26,45 @@
 }
 
 .rating {
-  margin-bottom: 1em;
+  margin-bottom: 0em;
+  padding-bottom: 0em;
 }
 
 .overview {
   margin-bottom: 1em;
   padding-bottom: 250px;
-  font-size: 1.3em;
+  font-size: 1.1em;
 }
 
 .heart {
-    position: absolute;
+  position: relative;
+  padding-bottom: 0em;
 }
 
 .title {
-    font-size: 2.5em;
-    color: rgb(253, 210, 191)
+  font-size: 2.5em;
+  color: rgb(253, 210, 191);
+}
+
+@media only screen and (max-width: 1680px) {
+  .cardContainer {
+    width: 43%;
+  }
+}
+
+@media only screen and (max-width: 1510px) {
+  .cardContainer {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .overview {
+    font-size: 1em;
+  }
+  .cardContainer {
+    text-align: center;
+  }
+
+  
 }

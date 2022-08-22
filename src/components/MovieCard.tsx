@@ -42,18 +42,23 @@ const MovieCard: React.FC<Props> = ({ movie, setCurrentFavoriteList }) => {
     }
   }, [movie]);
 
+  let bgImg =
+    !movie.backdrop_path
+      ? "null"
+      : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url("https://image.tmdb.org/t/p/original/${movie.backdrop_path}")`;
+
   return (
     <Link
       to={`/movies/${movie.id}`}
       className={classes.cardContainer}
       style={{
-        background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url("https://image.tmdb.org/t/p/original/${movie.backdrop_path}")`,
+        background: bgImg,
         backgroundSize: "cover",
       }}
     >
       <div className={classes.innerContainer}>
         <h1 className={classes.title}>{movie.title}</h1>
-        <p>{movie.release_date}</p>
+        <p>Release date: {movie.release_date}</p>
         <p className={classes.overview}>{movie.overview}</p>
         <p className={classes.rating}>Rating: {movie.vote_average}</p>
         <p className={classes.heart}>{isFavorite ? <FaHeart /> : ""}</p>

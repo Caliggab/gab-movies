@@ -8,6 +8,7 @@ import MovieDetails from "./components/MovieDetails";
 import SearchResults from "./components/SearchResults";
 import PageNotFound from "./components/PageNotFound";
 
+
 interface popularMovie {
   backdrop_path: string;
   id: number;

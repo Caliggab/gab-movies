@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Card from "../UI/Card";
 import classes from "./LoginScreen.module.css";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/img/logo.png";
 
 interface Props {
   auth: boolean;
@@ -48,8 +49,8 @@ const LoginScreen: React.FC<Props> = ({ auth, setAuth }) => {
         body: JSON.stringify({ email: input.email, password: input.password }),
       });
 
-      if(!response.ok) {
-        setError(true)
+      if (!response.ok) {
+        setError(true);
       }
 
       const data = await response.json();
@@ -61,7 +62,7 @@ const LoginScreen: React.FC<Props> = ({ auth, setAuth }) => {
       }
       setIsLoading(false);
     } catch (error: any) {
-      console.log("error!!!")
+      console.log("error!!!");
       console.log(error.message);
     }
   };
@@ -69,33 +70,47 @@ const LoginScreen: React.FC<Props> = ({ auth, setAuth }) => {
   return (
     <div className={classes.backdrop}>
       {isLoading ? (
-        <div>Loading...</div>
+        <div className={classes.background}>
+          <iframe
+            src="https://embed.lottiefiles.com/animation/9619"
+            className={classes.spinner}
+            width="500"
+            height="500"
+            title="spinner"
+          ></iframe>
+        </div>
       ) : (
         <div className={classes.modal}>
           <Card>
-            <div className={classes.container}>
-              <h1>Log in to see your movies</h1>
-              <form className={classes.form} onSubmit={handleSubmit}>
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className={classes.text}
-                  value={input.email}
-                  onChange={handleChange}
-                  name="email"
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className={classes.text}
-                  value={input.password}
-                  onChange={handleChange}
-                  name="password"
-                />
-                <button className={classes.button}>Log In</button>
-              </form>
-              {isInvalid ? <p>Fields are too short</p> : ""}
-              {error ? <p>Credentials are wrong, please try again</p> : ""}
+            <div className={classes.mainContainer}>
+              <img src={logo} className={classes.logo} alt="logo" />
+
+              <div className={classes.container}>
+                <form className={classes.wrapper} onSubmit={handleSubmit}>
+                  <div className={classes.search_box}>
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      value={input.email}
+                      onChange={handleChange}
+                      name="email"
+                    />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      value={input.password}
+                      onChange={handleChange}
+                      name="password"
+                    />
+                  </div>
+                  <button className={classes.scroller}>
+                    {" "}
+                    Begin your adventure{" "}
+                  </button>
+                </form>
+              </div>
+              {isInvalid ? <p className={classes.error}>Fields are too short</p> : ""}
+              {error ? <p className={classes.error}>Credentials are wrong, please try again</p> : ""}
             </div>
           </Card>
         </div>

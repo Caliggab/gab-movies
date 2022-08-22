@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import Footer from "./Footer";
 import Header from "./Header";
 import MoviesList from "./MoviesList";
 import SearchMovies from "./SearchMoviesForm";
+import classes from "./SearchResults.module.css";
 
 interface Props {
   isLoggedIn: boolean;
@@ -55,18 +57,39 @@ const SearchResults: React.FC<Props> = ({
     <div>
       <Header logOut={logOut} currentFavoriteList={currentFavoriteList} />
       {isLoading ? (
-        <div>Loading...</div>
+        <div className={classes.background}>
+          <iframe
+            src="https://embed.lottiefiles.com/animation/9619"
+            className={classes.spinner}
+            width="500"
+            height="500"
+            title="spinner"
+          ></iframe>
+        </div>
       ) : (
         <div>
-          <h1>SearchResults!!</h1>
-          <SearchMovies />
-          <p>Your current search: {searchQuery}</p>
-          <MoviesList
-            movies={foundMovies}
-            setCurrentFavoriteList={setCurrentFavoriteList}
-          />
+          <div className={classes.hero}></div>
+          <div className={classes.container}>
+            <p className={classes.title}>
+              Current search:{" "}
+              <span className={classes.query}>{searchQuery}</span>
+            </p>
+            {foundMovies.length === 0 ? (
+              <div className={classes.noResults}>No results found! Try a different query</div>
+            ) : (
+              ""
+            )}
+            <div className={classes.listContainer}>
+              <MoviesList
+                movies={foundMovies}
+                setCurrentFavoriteList={setCurrentFavoriteList}
+              />
+            </div>
+          </div>
         </div>
       )}
+
+      <Footer />
     </div>
   );
 };

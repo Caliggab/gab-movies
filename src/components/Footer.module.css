@@ -1,11 +1,12 @@
 .container {
+  position: relative;
   display: flex;
   height: 500px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: 2em;
-  background-color: rgb(15, 15, 15);
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgb(23, 23, 23));
   margin-top: 10em;
 }
 
@@ -20,4 +21,31 @@
 .gitLogo:hover {
   color: white;
   transition-duration: 0.4s;
+}
+
+.backToTop {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 0.5em;
+  cursor: pointer;
+  position: absolute;
+  top: -80px;
+  color: rgb(239, 108, 50);
+  border: 2px solid rgb(239, 108, 50);
+  border-radius: 15px;
+  padding: 1em 1.7em;
+}
+
+.backToTop:hover {
+  color: rgb(255, 255, 255);
+  border: 2px solid rgb(255, 255, 255);
+  transition-duration: 0.4s;
+}
+
+@media only screen and (max-width: 550px) {
+  .container {
+    font-size: 1.3em;
+    gap: 1em;
+  }
 }

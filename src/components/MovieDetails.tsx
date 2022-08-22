@@ -6,6 +6,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { FaHeart } from "react-icons/fa";
 import Footer from "./Footer";
+import Profile from "../assets/img/profile.jpg"
 
 interface Props {
   isLoggedIn: boolean;
@@ -149,14 +150,22 @@ const MovieDetails: React.FC<Props> = ({
     getSpecificMovie();
   }, []);
 
+  let bgImg = !specificMovie!.backdrop_path
+    ? "null"
+    : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url("https://image.tmdb.org/t/p/original/${
+        specificMovie!.backdrop_path
+      }")`;
+
   let movieInfo = (
     <div>
       <div
         className={classes.hero}
         style={{
-          background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1)), url("https://image.tmdb.org/t/p/original/${
-            specificMovie!.backdrop_path
-          }")`,
+          background: !specificMovie!.backdrop_path
+            ? "null"
+            : `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 1)), url("https://image.tmdb.org/t/p/original/${
+                specificMovie!.backdrop_path
+              }")`,
           backgroundSize: "cover",
         }}
       >
@@ -194,7 +203,11 @@ const MovieDetails: React.FC<Props> = ({
       </div>
 
       <div className={classes.carrouselContainer}>
-        <h2 className={classes.carrouselTitle}>Cast</h2>
+        {cast.length === 0 ? (
+          ""
+        ) : (
+          <h2 className={classes.carrouselTitle}>Cast</h2>
+        )}
         <Carousel
           className={classes.carrousel}
           showIndicators={false}
@@ -203,38 +216,69 @@ const MovieDetails: React.FC<Props> = ({
           showArrows={false}
           autoPlay={true}
           infiniteLoop={true}
+          showStatus={false}
+          showThumbs={false}
+          stopOnHover={true}
         >
           {cast.slice(0, 20).map((person: any) => (
             <div className={classes.carrouselItem}>
               <p className={classes.label}>
                 {person.name} as: {person.character}
               </p>
-              <img
-                src={`https://image.tmdb.org/t/p/original/${person.profile_path}`}
+              {person.profile_path === null ? (
+                // <div className={classes.actorPic}></div>
+                <img
+                  src={Profile}
+                  alt=""
+                  className={classes.actorPic}
+                />
+              ) : (
+                <img
+                  src={
+                    person.profile_path === null
+                      ? ""
+                      : `https://image.tmdb.org/t/p/original/${person.profile_path}`
+                  }
+                  alt=""
+                  className={classes.actorPic}
+                />
+              )}
+
+              {/* <img
+                src={
+                  person.profile_path === null
+                    ? ""
+                    : `https://image.tmdb.org/t/p/original/${person.profile_path}`
+                }
                 alt=""
                 className={classes.actorPic}
-              />
+              /> */}
             </div>
           ))}
         </Carousel>
       </div>
-
-      <h2>Recommendations</h2>
+      {recommendations.length === 0 ? (
+        ""
+      ) : (
+        <h2 className={classes.recMainTitle}>Recommendations</h2>
+      )}
       <div className={classes.recContainer}>
         {recommendations.slice(0, 12).map((movie: any) => (
-          <Link
-            to={`/movies/${movie.id}`}
+          <a
+            href={`/movies/${movie.id}`}
             className={classes.cardContainer}
             style={{
-              background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url("https://image.tmdb.org/t/p/original/${movie.backdrop_path}")`,
+              background: !movie.backdrop_path
+                ? "null"
+                : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url("https://image.tmdb.org/t/p/original/${movie.backdrop_path}")`,
+
               backgroundSize: "cover",
             }}
-            key={Math.random()}
           >
             <div className={classes.innerContainer}>
               <h1 className={classes.recTitle}>{movie.title}</h1>
             </div>
-          </Link>
+          </a>
         ))}
       </div>
     </div>
@@ -243,7 +287,15 @@ const MovieDetails: React.FC<Props> = ({
   return (
     <div>
       {isLoading ? (
-        <div>Loading...</div>
+        <div className={classes.background}>
+          <iframe
+            src="https://embed.lottiefiles.com/animation/9619"
+            className={classes.spinner}
+            width="500"
+            height="500"
+            title="spinner"
+          ></iframe>
+        </div>
       ) : (
         <div>
           <Header logOut={logOut} currentFavoriteList={currentFavoriteList} />

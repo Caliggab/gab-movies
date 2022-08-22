@@ -13,7 +13,7 @@ const SearchMovies: React.FC<Props> = () => {
   const searchRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit: any = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     let query = searchRef.current!.value;
 
@@ -26,6 +26,12 @@ const SearchMovies: React.FC<Props> = () => {
     if (query.length > 15) {
       setIsInvalid(true);
       setMessage("Query shouldn't exceed 15 characters");
+      return;
+    }
+
+    if (/[^A-Za-z0-9]+/g.test(query)) {
+      setIsInvalid(true);
+      setMessage("Please only use letters and numbers");
       return;
     }
 
@@ -43,25 +49,14 @@ const SearchMovies: React.FC<Props> = () => {
             placeholder="Let's find something..."
             ref={searchRef}
           />
-          <IconContext.Provider
-            value={{ className: classes.fasearch }}
-          >
-            <div className={classes.searchIcon}>
-              <FaSearch />
+          <IconContext.Provider value={{ className: classes.fasearch }}>
+            <div className={classes.searchIcon} >
+              <FaSearch onClick={handleSubmit}/>
             </div>
           </IconContext.Provider>
         </div>
       </form>
-
-      {/* <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Search for a movie title!"
-          ref={searchRef}
-        />
-        <button>Search!!!</button>
-      </form> */}
-      {isInvalid ? <p>{message}</p> : ""}
+      {isInvalid ? <p className={classes.error}>{message}</p> : ""}
     </div>
   );
 };

@@ -1,7 +1,6 @@
 .container {
-    width: 40vw;
+  width: 40vw;
 }
-
 
 .wrapper {
   width: 100%;
@@ -14,6 +13,10 @@
 .search_box {
   width: 100%;
   position: relative;
+}
+
+.searchIcon {
+  cursor: pointer;
 }
 
 .search_box input[type="text"] {
@@ -37,7 +40,9 @@
   font-size: 30px;
 }
 
-
+.error {
+  color: rgb(239, 108, 50);
+}
 
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
@@ -55,5 +60,11 @@
 @media screen and (max-width: 425px) {
   .search_box {
     width: 95%;
+  }
+}
+
+@media only screen and (max-width: 930px) {
+  .container {
+    width: 100%;
   }
 }

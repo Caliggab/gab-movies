@@ -33,11 +33,10 @@
   justify-content: space-between;
   width: 100%;
   height: 150px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: transparent;
   padding: 0em;
   margin-top: 1em;
   border-radius: 10px;
-  border: 2px solid rgb(239, 108, 50);
 }
 
 .logoSearch {
@@ -46,6 +45,7 @@
   padding-left: 2em;
   width: 50vw;
   gap: 1.5em;
+  z-index: 20000;
 }
 
 .logo {
@@ -94,4 +94,40 @@
 .button:hover {
   background-color: #d20e00;
   color: white;
+}
+
+@media only screen and (max-width: 930px) {
+  .container {
+    flex-direction: column;
+    gap: 1.5em;
+  }
+
+  .logoSearch {
+    width: 90vw;
+    padding-left: 0;
+  }
+
+  .linkAndButton {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    padding-right: 0em;
+    margin-top: -2em;
+  }
+
+  .links {
+    margin-left: 0em;
+  }
+}
+
+@media only screen and (max-width: 505px) {
+  .logoSearch {
+    flex-direction: column;
+  }
+
+  .linkAndButton {
+    font-size: 0.7em;
+    margin-top: 0em;
+    gap: 5em;
+  }
 }

@@ -23,7 +23,7 @@ const Header: React.FC<Props> = ({ logOut, currentFavoriteList }) => {
       <div className={classes.container}>
         <div className={classes.logoSearch}>
           <Link to="/">
-            <img src={logo} className={classes.logo} alt="logo" />
+            <img src={logo} className={classes.logo} alt="logo" /> 
           </Link>
 
           <SearchMovies />

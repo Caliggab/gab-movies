@@ -1,0 +1,54 @@
+.spinner {
+  border: none;
+  pointer-events: none;
+  width: 100vw;
+  position: absolute;
+}
+
+.background {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  margin-top: 0;
+  z-index: 10000;
+  padding: 0;
+  background-size: cover;
+}
+
+.title {
+  text-align: center;
+  font-size: 2.5em;
+}
+
+.query {
+  color: rgb(239, 108, 50);
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)),
+      url("../assets/img/searchBackground.jpg");
+    margin-top: -230px;
+    z-index: 100;
+    padding: 0;
+    background-size: cover;
+  }
+
+  .container {
+    margin-top: -700px;
+    margin-bottom: 600px;
+  }
+
+  .noResults {
+    text-align: center;
+    font-size: 1.5em;
+  }
+
+  .listContainer {
+    margin-top: 200px;
+  }
