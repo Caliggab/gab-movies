@@ -70,7 +70,7 @@ const Favorites: React.FC<Props> = ({
         <p className={classes.total}>Total: {currentFavoriteList.length}</p>
       )}
       {noFavorites ? (
-        <h2 className={classes.subtitle}>No favorites added yet! 😢</h2>
+        <h2 className={classes.noFavs}>No favorites added yet! 😢</h2>
       ) : (
         <FavoriteList
           movies={[...movies].reverse()}

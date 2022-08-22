@@ -53,6 +53,13 @@
 .subtitle {
   text-align: center;
   margin: 3.5em 0 0 0;
+  font-size: 1.6em;
+}
+
+.noFavs {
+  text-align: center;
+  margin: 3.5em 0 0 0;
+  font-size: 1em;
 }
 
 .total {
