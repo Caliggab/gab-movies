@@ -1,12 +1,12 @@
 .cardContainer {
-  max-width: 45%;
+  max-width: 40%;
   min-height: 600px;
   flex: 50%;
   text-decoration: none;
   color: white;
   background-size: cover;
   border-radius: 15px;
-  padding: 1em 2em;
+  padding: 0em 2em;
   transition: all 0.2s ease-in-out;
   background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)),
     url("../assets/img/bgPlaceholder.jpg");
@@ -48,11 +48,11 @@
 
 @media only screen and (max-width: 1680px) {
   .cardContainer {
-    width: 43%;
+    width: 33%;
   }
 }
 
-@media only screen and (max-width: 1510px) {
+@media only screen and (max-width: 900px) {
   .cardContainer {
     max-width: 100%;
   }
@@ -65,6 +65,4 @@
   .cardContainer {
     text-align: center;
   }
-
-  
 }
